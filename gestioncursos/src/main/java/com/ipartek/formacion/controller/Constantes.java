@@ -1,5 +1,7 @@
 package com.ipartek.formacion.controller;
 
+import com.ipartek.formacion.pojo.Duracion;
+
 public class Constantes {
 	private Constantes() {}
 	public final static String ATT_LISTADO_CURSOS= "listado_cursos";
@@ -10,6 +12,9 @@ public class Constantes {
 	
 	public final static String ATT_LISTADO_MODULOS = "listado_modulos";
 	public final static String ATT_MODULO = "modulo";
+	public final static String ATT_LISTA_DURACION_MODULO="listado_duracion";
+	public final static String ATT_DURACION="duracion";
+	
 		
 	public final static String PAR_CODIGO= "codigo";
 	public final static String PAR_NOMBRE ="nombre";
@@ -25,7 +30,14 @@ public class Constantes {
 	public final static String PAR_IDIOMA ="idioma";
 	public final static String PAR_CURSO="curso";
 	public final static String PAR_MODULO="modulos";
+	public final static String PAR_REFERENCIA="referencia";
+	public final static String PAR_DURACION="duracion";
+	public final static String PAR_LISTADOS_ALUMNOS="";
+	public final static String PAR_LISTADOS_MODULOS="";
 	
+	public final static Duracion[] LISTA_DURACION = {Duracion.QUINCE,Duracion.VEINTE,Duracion.CUARENTAYCINCO,Duracion.OCHENTA,Duracion.NOVENTA};
+
+		
 	public final static String SERVLET_CURSOS ="cursos.do";
 	public final static String SERVLET_ALUMNOS ="alumnos.do";
 	public final static String SERVLET_MODULOS="modulos.do";
@@ -35,6 +47,9 @@ public class Constantes {
 	
 	public final static String JSP_LISTADO_ALUMNOS ="/alumnos/listado.jsp";
 	public final static String JSP_ALUMNO ="/alumnos/alumno.jsp";
+	
+	public final static String JSP_LISTADO_MODULOS ="/modulos/listado.jsp";
+	public final static String JSP_MODULO ="/modulos/modulo.jsp";
 	
 	public final static int OP_CREATE=0;
 	public final static int OP_READ=1;

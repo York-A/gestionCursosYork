@@ -1,11 +1,16 @@
 package com.ipartek.formacion.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
+import com.ipartek.formacion.pojo.Duracion;
 import com.ipartek.formacion.pojo.Genero;
 import com.ipartek.formacion.pojo.Idioma;
+import com.ipartek.formacion.pojo.Modulo;
+import com.ipartek.formacion.pojo.exception.ModuloException;
 
 public class Util {
 
@@ -111,6 +116,37 @@ public class Util {
 			genero=Genero.MASCULINO;
 		}
 		return genero;
+	}
+	
+	public static Duracion parseDuracion(String duracion){
+		Duracion d=Duracion.QUINCE;
+		int val=Integer.parseInt(duracion);
+		if (Duracion.VEINTE.getValor()==val) {
+			d=Duracion.VEINTE;
+		}else if (Duracion.CUARENTAYCINCO.getValor()==val) {
+			d=Duracion.CUARENTAYCINCO;	
+		}else if (Duracion.OCHENTA.getValor()==val) {
+			d=Duracion.OCHENTA;
+		}else if (Duracion.NOVENTA.getValor()==val) {
+			d=Duracion.NOVENTA;
+		}
+		
+		return d;
+		
+	}
+	
+	public static Map<Integer,Modulo> parseModulos(String [] cods) throws NumberFormatException, ModuloException{
+		Map<Integer,Modulo>aux=new HashMap<Integer,Modulo>();
+		Modulo m=null;
+		ModuloService mS=ModuloServiceImp.getInstance();
+		Integer c=-1;
+		for (String s : cods) {
+			c=Integer.parseInt(s);
+			m=mS.getById(c);
+			aux.put(c, m);	
+			
+		}
+		return aux;
 	}
 	
 	

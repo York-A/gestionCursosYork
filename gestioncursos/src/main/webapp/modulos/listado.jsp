@@ -22,15 +22,15 @@
 					//la variable del codigo del curso
 					formulario +="<input type='hidden' "+
 							"name='"+Constantes.PAR_CODIGO+
-							"' value='"+modulo.getCodigoModulo()+"'/>";
+							"' value='"+modulo.getCodigo()+"'/>";
 					//el boton de borrar
 formulario +="<button type='submit' class='btn btn-danger'>Borrar</button>";
 					formulario +="</form>";
 					%>
 				<div class="row">
 					<a class="col-xs-10 col-md-6" href='<%=Constantes.SERVLET_MODULOS %>
-						?<%=Constantes.PAR_CODIGO%>=<%=modulo.getCodigoModulo() %>'>
-						<%=modulo.getNombreModulo() %>
+						?<%=Constantes.PAR_CODIGO%>=<%=modulo.getCodigo() %>'>
+						<%=modulo.getNombre() %>
 					</a>
 					<%=formulario %>						
 				</div>

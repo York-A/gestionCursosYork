@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.ipartek.formacion.pojo.Curso;
 import com.ipartek.formacion.pojo.Modulo;
 import com.ipartek.formacion.pojo.exception.CursoException;
+import com.ipartek.formacion.pojo.exception.ModuloException;
 import com.ipartek.formacion.service.CursoService;
 import com.ipartek.formacion.service.CursoServiceImp;
+import com.ipartek.formacion.service.Util;
 
 /**
  * Servlet implementation class CursoServlet
@@ -118,14 +120,26 @@ public class CursoServlet extends HttpServlet {
 	}
 
 	private void recogerDatos(HttpServletRequest request) {
+		Map<Integer,Modulo> modulos=new HashMap<Integer,Modulo>();
 		curso=new Curso();
 		recogerId(request);
 		curso.setCodigo(id);
 		String name=request.getParameter(Constantes.PAR_NOMBRE);
 		curso.setNombre(name);
-//		Map<Integer,Modulo> modulos=request.getParameterMap(Constantes.PAR_MODULO);
-//		List<Modulo> ms=request.getParameter(Constantes.PAR_MODULO);
-//		curso.setModulos(modulos);
+		String[]mods=request.getParameterValues(Constantes.PAR_MODULO);
+		
+ 		try {
+			modulos=Util.parseModulos(mods);
+			System.out.println();
+			curso.setModulos(modulos);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ModuloException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println();
 	}
 
 }

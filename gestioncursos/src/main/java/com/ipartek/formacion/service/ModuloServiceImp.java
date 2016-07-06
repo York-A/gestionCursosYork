@@ -18,7 +18,7 @@ public class ModuloServiceImp implements ModuloService {
 
 	private static ModuloServiceImp INSTANCE=null;
 	private List<Modulo>modulos;
-	private static int aCounter;
+	private static int aCounter=1;
 	
 	private ModuloServiceImp(){
 		this.modulos=new ArrayList<Modulo>();
@@ -41,41 +41,66 @@ public class ModuloServiceImp implements ModuloService {
 	
 	
 	public void init(){
+		Modulo m1=null;
+		try {
+			m1=new Modulo();
+			m1.setNombre("modulo mnbv");
+			m1.setCodigo(1);
+			createModulo(m1);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		Modulo m1=new Modulo();
-		Modulo m2=new Modulo();
-		Modulo m3=new Modulo();
+		Modulo m2=null;
+		try {
+			m2=new Modulo();
+			m2.setNombre("modulo fghj");
+			m2.setCodigo(2);
+			createModulo(m2);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Modulo m3=null;
+		try {
+			m3=new Modulo();
+			m3.setNombre("modulo rtyu");
+			m3.setCodigo(3);
+			createModulo(m3);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		m1.setNombreModulo("modulo mnbv");
-		m2.setNombreModulo("modulo fghj");
-		m3.setNombreModulo("modulo rtyu");
 		
-		
-		createModulo(m1);
-		createModulo(m2);
-		createModulo(m3);
-		
-		aCounter=0;
 		
 		
 	}
 	@Override
 	public Modulo createModulo(Modulo modulo) {
-		modulo.setCodigoModulo(aCounter);
-		aCounter++;
+		modulo.setCodigo(aCounter);
 		this.modulos.add(modulo);
+		aCounter++;
+		
 		return modulo;
 	}
 
 	@Override
 	public Modulo getById(int codigo) throws ModuloException {
 		Modulo aux=null;
-		int index=this.getIndex(codigo);
-		if (index <0) {
-			throw new ModuloException(ModuloException.CODIGO_ERROR_INDEX_MODULO,ModuloException.MSG_ERROR_INDEX_MODULO);
+		int index;
+		try {
+			index=this.getIndex(codigo);
+			if (index <0) {
+				throw new ModuloException(ModuloException.CODIGO_ERROR_INDEX_MODULO,ModuloException.MSG_ERROR_INDEX_MODULO);
+			}
+			
+			aux=this.modulos.get(index);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		aux=this.modulos.get(index);
 		return aux;
 	}
 
@@ -94,8 +119,8 @@ public class ModuloServiceImp implements ModuloService {
 
 	@Override
 	public Modulo updateModulo(Modulo modulo) {
-		int index=this.getIndex(modulo.getCodigoModulo());
-		this.modulos.add(index, modulo);
+		int index=this.getIndex(modulo.getCodigo());
+		this.modulos.set(index, modulo);
 		
 		return modulo;
 	}
@@ -108,7 +133,7 @@ public class ModuloServiceImp implements ModuloService {
 		while (i < len && found == false) {
 			Modulo aux = this.modulos.get(i);
 
-			if (aux.getCodigoModulo() == codigo) {
+			if (aux.getCodigo() == codigo) {
 				found = true;
 				index = i;
 			}

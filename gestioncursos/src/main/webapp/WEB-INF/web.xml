@@ -29,4 +29,14 @@
     <servlet-name>AlumnoServlet</servlet-name>
     <url-pattern>/alumnos.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModuloServlet</display-name>
+    <servlet-name>ModuloServlet</servlet-name>
+    <servlet-class>com.ipartek.formacion.controller.ModuloServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModuloServlet</servlet-name>
+    <url-pattern>/modulos.do</url-pattern>
+  </servlet-mapping>
 </web-app>

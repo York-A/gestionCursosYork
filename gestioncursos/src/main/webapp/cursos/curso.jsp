@@ -1,8 +1,12 @@
+<%@page import="javax.swing.text.StyledEditorKit.ForegroundAction"%>
 <%@page import="com.ipartek.formacion.pojo.Curso"%>
 <%@page import="com.ipartek.formacion.pojo.Modulo"%>
+<%@page import="com.ipartek.formacion.pojo.Alumno"%>
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@page import="com.ipartek.formacion.service.ModuloService"%>
 <%@page import="com.ipartek.formacion.service.ModuloServiceImp"%>
+<%@page import="com.ipartek.formacion.service.AlumnoService"%>
+<%@page import="com.ipartek.formacion.service.AlumnoServiceImp"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Map"%>
@@ -16,8 +20,12 @@ int op=-1;
     String tGuardar = "";
     Map<Integer,Modulo> modulos=new HashMap<Integer,Modulo>();
     ModuloService mService=ModuloServiceImp.getInstance();
+    AlumnoService aService=AlumnoServiceImp.getInstance();
+    List<Alumno> lAlumnos=aService.getAll();
     List<Modulo> lModulos= mService.getAll();
-	for (Modulo m : lModulos) modulos.put(m.getCodigoModulo(),m);
+    int nHoras=0;
+    
+	for (Modulo m : lModulos) modulos.put(m.getCodigo(),m);
    
     
     
@@ -73,12 +81,18 @@ tGuardar="guardar";
 						
 						
 						for(Modulo modulo: lModulos){
+							Map<Integer,Modulo>mods=curso.getModulos();
+							boolean exists=false;
+							if(mods.containsKey(modulo.getCodigo())){
+								exists=true;
+								nHoras+=modulo.getDurModulo().getValor();
+							}
 							%>
 							<input type="checkbox" name="<%="Modulo" %>" id=""
-							
-							 value="<%=modulo.getCodigoModulo() %>"/> 
+							<%= exists ? "checked" : "" %>
+							 value="<%=modulo.getCodigo() %>"/> 
 							 
-							<%=modulo.getNombreModulo() %>
+							<%=modulo.getNombre() %>
 							
 							
 							<%
@@ -93,6 +107,35 @@ tGuardar="guardar";
 						<%=tGuardar %>
 					</button>
 				</div>
+				<div class="form-group">
+					<label class="col-xs-2">Alumnos:</label>
+					<div class="col-xs-10">
+				
+						<% 
+						
+						
+						for(Alumno alumno: lAlumnos){
+							Map<String,Alumno>als=curso.getAlumnos();
+							boolean exists=false;
+							if(als.containsKey(alumno.getDni())){
+								exists=true;
+							}
+							%>
+							<input type="checkbox" name="<%="Modulo" %>" id=""
+							<%= exists ? "checked" : "" %>
+							 value="<%=alumno.getCodigo() %>"/> 
+							 
+							<%=alumno.getNombre() %>
+							<%=alumno.getApellidos() %>
+							
+							
+							<%
+						} 
+						
+						
+						%>
+																				
+					</div>
 		</form>
 			
 		<% 
