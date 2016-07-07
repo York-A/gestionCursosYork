@@ -14,6 +14,7 @@ public class Constantes {
 	public final static String ATT_MODULO = "modulo";
 	public final static String ATT_LISTA_DURACION_MODULO="listado_duracion";
 	public final static String ATT_DURACION="duracion";
+	public final static String ATT_MENSAJE ="mensaje";
 	
 		
 	public final static String PAR_CODIGO= "codigo";
@@ -32,8 +33,13 @@ public class Constantes {
 	public final static String PAR_MODULO="modulos";
 	public final static String PAR_REFERENCIA="referencia";
 	public final static String PAR_DURACION="duracion";
-	public final static String PAR_LISTADOS_ALUMNOS="";
-	public final static String PAR_LISTADOS_MODULOS="";
+	public final static String PAR_LISTADOS_ALUMNOS="codigos_modulos";
+	public final static String PAR_LISTADOS_MODULOS="codigos_alumnos";
+	public final static String PAR_TIPOCURSO ="tipo_curso";
+	
+	public final static String PAR_USER="user";
+	public final static String PAR_PASSWORD="password";
+	
 	
 	public final static Duracion[] LISTA_DURACION = {Duracion.QUINCE,Duracion.VEINTE,Duracion.CUARENTAYCINCO,Duracion.OCHENTA,Duracion.NOVENTA};
 
@@ -41,7 +47,10 @@ public class Constantes {
 	public final static String SERVLET_CURSOS ="cursos.do";
 	public final static String SERVLET_ALUMNOS ="alumnos.do";
 	public final static String SERVLET_MODULOS="modulos.do";
+	public final static String SERVLET_LOGIN="logins.do";
+	public final static String SERVLET_LOGOUT="logouts.do";
 	
+		
 	public final static String JSP_LISTADO_CURSOS ="/cursos/listado.jsp";
 	public final static String JSP_CURSO ="/cursos/curso.jsp";
 	

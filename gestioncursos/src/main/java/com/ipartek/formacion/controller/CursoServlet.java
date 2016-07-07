@@ -11,12 +11,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ipartek.formacion.pojo.Alumno;
 import com.ipartek.formacion.pojo.Curso;
 import com.ipartek.formacion.pojo.Modulo;
 import com.ipartek.formacion.pojo.exception.CursoException;
 import com.ipartek.formacion.pojo.exception.ModuloException;
+import com.ipartek.formacion.service.AlumnoService;
+import com.ipartek.formacion.service.AlumnoServiceImp;
 import com.ipartek.formacion.service.CursoService;
 import com.ipartek.formacion.service.CursoServiceImp;
+import com.ipartek.formacion.service.ModuloService;
+import com.ipartek.formacion.service.ModuloServiceImp;
 import com.ipartek.formacion.service.Util;
 
 /**
@@ -25,6 +30,8 @@ import com.ipartek.formacion.service.Util;
 public class CursoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static CursoService cService=CursoServiceImp.getInstance();
+	private static AlumnoService aService=AlumnoServiceImp.getInstance();
+	private static ModuloService mService=ModuloServiceImp.getInstance();
 	private Curso curso=null;
 	private int id=-1;
 	private int operacion=-1;
@@ -140,6 +147,32 @@ public class CursoServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		System.out.println();
+	}
+	private Map<String, Alumno> recogerAlumnos(String[]codAlumnos){
+		Map<String, Alumno> mapAlumnos=new HashMap<String,Alumno>();
+		for (String s : codAlumnos) {
+			Alumno a=null;
+			int codigo=Integer.parseInt(s);
+			a=aService.getById(codigo);
+			mapAlumnos.put(s, a);
+			
+			
+		}
+		
+		return mapAlumnos;
+	}
+	private Map<Integer,Modulo> getModulos(String[]codModulos) throws ModuloException{
+		Map<Integer, Modulo> mapModulos=new HashMap<Integer, Modulo>();
+		for (String string : codModulos) {
+			Modulo m=null;
+			int codigo=Integer.parseInt(string);
+			m=mService.getById(codigo);
+			mapModulos.put(codigo, m);
+		}
+		
+		
+		
+		return mapModulos;
 	}
 
 }
